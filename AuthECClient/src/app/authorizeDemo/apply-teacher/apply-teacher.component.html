@@ -1,0 +1,77 @@
+<div class="container py-5">
+  <!-- Header -->
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">👩‍🏫 Apply Now as Teacher</h2>
+    <p class="text-muted">We're excited to welcome passionate educators! Fill out the form to apply for a teaching position.</p>
+  </div>
+
+  <!-- Teacher Application Form -->
+  <form class="row g-4">
+    <!-- Full Name -->
+    <div class="col-md-6">
+      <label for="fullName" class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Jane Smith" required>
+    </div>
+
+    <!-- Email -->
+    <div class="col-md-6">
+      <label for="email" class="form-label">Email Address</label>
+      <input type="email" class="form-control" id="email" placeholder="example@domain.com" required>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="col-md-6">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" id="phone" placeholder="+1 234 567 8901" required>
+    </div>
+
+    <!-- Subject Expertise -->
+    <div class="col-md-6">
+      <label for="subject" class="form-label">Subject Expertise</label>
+      <select class="form-select" id="subject" required>
+        <option selected disabled>Select Subject</option>
+        <option>Mathematics</option>
+        <option>English</option>
+        <option>Science</option>
+        <option>Computer Science</option>
+        <option>History</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <!-- Qualification -->
+    <div class="col-md-6">
+      <label for="qualification" class="form-label">Highest Qualification</label>
+      <input type="text" class="form-control" id="qualification" placeholder="e.g., Master's in Mathematics" required>
+    </div>
+
+    <!-- Years of Experience -->
+    <div class="col-md-6">
+      <label for="experience" class="form-label">Years of Experience</label>
+      <input type="number" class="form-control" id="experience" placeholder="e.g., 5" required>
+    </div>
+
+    <!-- Address -->
+    <div class="col-md-12">
+      <label for="address" class="form-label">Residential Address</label>
+      <textarea class="form-control" id="address" rows="2" placeholder="Street, City, Country" required></textarea>
+    </div>
+
+    <!-- Upload Resume -->
+    <div class="col-md-12">
+      <label for="resume" class="form-label">Upload Resume (PDF/DOC)</label>
+      <input type="file" class="form-control" id="resume" accept=".pdf,.doc,.docx" required>
+    </div>
+
+    <!-- Message -->
+    <div class="col-md-12">
+      <label for="message" class="form-label">Why do you want to join us?</label>
+      <textarea class="form-control" id="message" rows="4" placeholder="Your motivation, passion, etc." required></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary px-5">Submit Application</button>
+    </div>
+  </form>
+</div>

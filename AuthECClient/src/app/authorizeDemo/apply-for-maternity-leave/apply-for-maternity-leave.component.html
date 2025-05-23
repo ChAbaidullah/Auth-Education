@@ -1,0 +1,61 @@
+<div class="container py-5">
+  <!-- Header -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold">🤰 Maternity Leave Application</h2>
+    <p class="text-muted">Submit a maternity leave request and view policy details.</p>
+  </div>
+
+  <!-- Information Card -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">📌 Policy Overview</h5>
+      <p class="card-text">
+        Our institution provides up to <strong>90 days</strong> of maternity leave to eligible staff.
+        All requests must be submitted at least <strong>30 days</strong> in advance and must include medical documentation.
+      </p>
+      <ul>
+        <li>Leave Duration: Up to 90 days</li>
+        <li>Eligible: Full-time staff with 1+ year of service</li>
+        <li>Paid Leave: Yes</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Application Form -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">📝 Maternity Leave Request Form</h5>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" placeholder="Enter your name" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" placeholder="your@email.com" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Position / Role</label>
+          <input type="text" class="form-control" placeholder="e.g. Science Teacher" required>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-control" required>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Medical Certificate (PDF)</label>
+          <input type="file" class="form-control" accept=".pdf" required>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Application</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="text-center">
+  <h1 class="display-6">You're In! Let's Manage Things</h1>
+  <h1 class="display-6 fw-bolder text-dark">{{fullName}}</h1>
+  <a  routerLink="/admin-only"><button [appHideIfClaimsNotMet]="claimReq.adminOnly" class="btn btn-danger">Admin Control Pannel</button></a>
+</div>
