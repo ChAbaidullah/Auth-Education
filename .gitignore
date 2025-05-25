@@ -1,1 +1,9 @@
 .vs/
+# Ignore node modules
+node_modules/
+
+# Ignore build output
+dist/
+
+# Ignore IDE settings
+.vscode/
