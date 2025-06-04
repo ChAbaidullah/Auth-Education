@@ -17,7 +17,7 @@ import { UserDashboardComponent } from './authorizeDemo/user-dashboard/user-dash
 import { ContactUsComponent } from './authorizeDemo/contact-us/contact-us.component';
 import { ApplyForAdmissionComponent } from './authorizeDemo/apply-for-admission/apply-for-admission.component';
 import { ApplyTeacherComponent } from './authorizeDemo/apply-teacher/apply-teacher.component';
-import { ManageUsersComponent } from './authorizeDemo/manage-users/manage-users.component';
+import { ManageTeachersComponent } from './authorizeDemo/manage-teachers/manage-teachers.component';
 import { AdminReportsComponent } from './authorizeDemo/admin-reports/admin-reports.component';
 import { AdminSettingsComponent } from './authorizeDemo/admin-settings/admin-settings.component';
 import { CoursesComponent } from './authorizeDemo/courses/courses.component';
@@ -27,6 +27,9 @@ import { SchedulesComponent } from './authorizeDemo/schedules/schedules.componen
 import { StudentAssignmentsComponent } from './authorizeDemo/student-assignments/student-assignments.component';
 import { TestSchedulesComponent } from './authorizeDemo/test-schedules/test-schedules.component';
 import { TimetableComponent } from './authorizeDemo/timetable/timetable.component';
+import { ShopifyOrdersComponent } from './authorizeDemo/shopify-orders/shopify-orders.component';
+import { InactiveOrdersComponent } from './authorizeDemo/inactive-orders/inactive-orders.component';
+import { ActiveOrdersComponent } from './authorizeDemo/active-orders/active-orders.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
@@ -49,7 +52,7 @@ export const routes: Routes = [
         data: { claimReq: claimReq.adminOnly }
       },
       {
-        path: 'manage-users', component: ManageUsersComponent,
+        path: 'manage-teachers', component: ManageTeachersComponent,
         data: { claimReq: claimReq.adminOnly }
       },
       {
@@ -58,6 +61,18 @@ export const routes: Routes = [
       },
       {
         path: 'admin-settings', component: AdminSettingsComponent,
+        data: { claimReq: claimReq.adminOnly }
+      },
+      {
+        path: 'shopify-orders', component: ShopifyOrdersComponent,
+        data: { claimReq: claimReq.adminOnly }
+      },
+      {
+        path: 'active-orders', component: ActiveOrdersComponent,
+        data: { claimReq: claimReq.adminOnly }
+      },
+      {
+        path: 'inactive-orders', component: InactiveOrdersComponent,
         data: { claimReq: claimReq.adminOnly }
       },
       {

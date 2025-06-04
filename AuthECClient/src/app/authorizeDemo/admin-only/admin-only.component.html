@@ -1,4 +1,6 @@
-<h2 class="bg-danger text-white p-3 rounded shadow text-center">🛡️ Controls for Admins only</h2>
+<h2 class="bg-danger text-white p-3 rounded shadow text-center">
+  🛡️ Controls for Admins only
+</h2>
 <!-- <p class="text-muted ps-3 fst-italic border-start border-4 border-primary">Common Controls which can be controlled by admins will be displayed here in future.</p> -->
 <div class="container-fluid">
   <!-- Page Header -->
@@ -11,9 +13,11 @@
     <div class="col-md-4">
       <div class="card shadow-sm">
         <div class="card-body">
-          <h5 class="card-title">Manage Users</h5>
-          <p class="card-text">Add, update, or delete user accounts.</p>
-          <a href="/manage-users" class="btn btn-outline-warning px-4">Go to Users</a>
+          <h5 class="card-title">Manage Teachers</h5>
+          <p class="card-text">Add, update, or delete teacher accounts.</p>
+          <a [routerLink]="['/manage-teachers']" routerLinkActive="router-link-active" class="btn btn-outline-warning px-4"
+            >Go to Teachers</a
+          >
         </div>
       </div>
     </div>
@@ -23,7 +27,9 @@
         <div class="card-body">
           <h5 class="card-title">View Reports</h5>
           <p class="card-text">Check system activity and usage stats.</p>
-          <a href="/admin-reports" class="btn btn-outline-success px-4">View Reports</a>
+          <a [routerLink]="['/admin-reports']" routerLinkActive="router-link-active" class="btn btn-outline-success px-4"
+            >View Reports</a
+          >
         </div>
       </div>
     </div>
@@ -33,7 +39,9 @@
         <div class="card-body">
           <h5 class="card-title">Settings</h5>
           <p class="card-text">Update admin preferences and system settings.</p>
-          <a href="/admin-settings" class="btn btn-outline-secondary px-4">Settings</a>
+          <a [routerLink]="['/admin-settings']" routerLinkActive="router-link-active" class="btn btn-outline-secondary px-4"
+            >Settings</a
+          >
         </div>
       </div>
     </div>
@@ -41,10 +49,129 @@
 
   <!-- User Table -->
   <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <!-- <div class="card-header d-flex justify-content-between align-items-center">
       <h5 class="mb-0">User List</h5>
       <button class="btn btn-outline-primary btn-sm">Add New User</button>
+    </div> -->
+
+    <!-- Card for Add new user -->
+    <!-- Add New User Button (Opens Modal) -->
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">User List</h5>
+      <button
+        class="btn btn-outline-primary btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#addUserModal"
+      >
+        Add New User
+      </button>
     </div>
+
+    <!-- 🔽 Modal for Adding a New User -->
+    <div
+      class="modal fade"
+      id="addUserModal"
+      tabindex="-1"
+      aria-labelledby="addUserModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow rounded">
+          <!-- Modal Header -->
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="addUserModalLabel">Add New</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Modal Body: Form in Card -->
+          <div class="modal-body">
+            <div class="card p-3 shadow-sm">
+              <form (ngSubmit)="addUser()">
+                <div class="mb-3">
+                  <label for="fullName" class="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fullName"
+                    name="fullName"
+                    [(ngModel)]="newUser.fullName"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    [(ngModel)]="newUser.email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    [(ngModel)]="newUser.username"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    [(ngModel)]="newUser.password"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="role" class="form-label">Role</label>
+                  <select
+                    class="form-select"
+                    id="role"
+                    name="role"
+                    [(ngModel)]="newUser.role"
+                    required
+                  >
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Student">Student</option>
+                    <option value="User">User</option>
+                  </select>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                  <button
+                    type="button"
+                    class="btn btn-secondary me-2"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button class="btn btn-primary" (click)="addUser()">
+                    {{ editMode ? "Update User" : "Add User" }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card-body p-0">
       <table class="table table-hover table-striped mb-0">
         <thead class="table-dark">
@@ -57,19 +184,42 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Example static row, replace with *ngFor -->
-          <tr>
-            <td>1</td>
-            <td>User-1</td>
-            <td>user&#64;gmail.com</td>
-            <td>User</td>
-            <td>
-              <button class="btn btn-sm btn-warning">Edit</button>
-              <button class="btn btn-sm btn-danger ms-2">Delete</button>
-              <button class="btn btn-sm btn-secondary ms-2">View</button>
-            </td>
-          </tr>
-        </tbody>
+  <tr *ngFor="let user of users; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ user.fullName }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.role }}</td>
+    <td>
+      <button class="btn btn-sm btn-warning" (click)="getById(user.id)">Edit</button>
+      <button class="btn btn-sm btn-danger ms-2" (click)="deleteuser(user.id)">Delete</button>
+      <button class="btn btn-sm btn-secondary ms-2" (click)="viewUser(user)">View</button>
+    </td>
+  </tr>
+</tbody>
+
+
+        <!-- View User Modal -->
+        <div class="modal fade" id="viewUserModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">User Details</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+              <div class="modal-body" *ngIf="selectedUser">
+                <p><strong>Full Name:</strong> {{ selectedUser.fullName }}</p>
+                <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+                <p><strong>Username:</strong> {{ selectedUser.userName }}</p>
+                <p><strong>Password:</strong> {{ selectedUser.password }}</p>
+                <p><strong>Role:</strong> {{ selectedUser.role }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </table>
     </div>
   </div>

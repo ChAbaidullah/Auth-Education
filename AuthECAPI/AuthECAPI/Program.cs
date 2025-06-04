@@ -1,6 +1,7 @@
 using AuthECAPI.Controllers;
 using AuthECAPI.Extensions;
 using AuthECAPI.Models;
+using AuthECAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddHttpClient<ShopifyService>();
 builder.Services.AddSwaggerExplorer()
                 .InjectDbContext(builder.Configuration)
                 .AddAppConfig(builder.Configuration)

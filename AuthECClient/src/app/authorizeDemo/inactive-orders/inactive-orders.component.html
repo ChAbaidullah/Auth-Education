@@ -1,0 +1,94 @@
+<div class="container py-5">
+  <!-- Page Title -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold">🗑️ Inactive Orders</h2>
+    <p class="text-muted">These are your deleted or archived Shopify orders.</p>
+  </div>
+
+  <!-- Inactive Orders Table -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-danger text-white">
+      <h5 class="mb-0">📁 Archived/Deleted Orders</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped align-middle mb-0 text-center">
+          <thead class="table-light">
+            <tr>
+              <!-- <th>#</th> -->
+              <th>Order Number</th>
+              <th>Product Names</th>
+              <th>Product IDs</th>
+              <th>Quantities</th>
+              <th>Created At</th>
+              <th>Total Price</th>
+              <th>Total Discount</th>
+              <th>Fulfillment Status</th>
+              <th>Financial Status</th>
+              <th>Status</th>
+              <!-- <th>Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of allOrders; index as i">
+              <!-- <td>{{i+1}}</td> -->
+              <td > {{order.orderNumber}}</td>
+              <td>{{order.productName}}</td>
+              <td>{{order.productId}}</td>
+              <td>{{order.quantity}}</td>
+              <td>{{order.createdAt}}</td>
+              <td>{{order.totalPrice}}</td>
+              <td>{{order.totalDiscount}}</td>
+               <td class="text-center align-middle">
+  <span
+    *ngIf="order.fulfillmentStatus === 'fulfilled'"
+    class="badge bg-primary"
+  >
+    {{ order.fulfillmentStatus }}
+  </span>
+
+  <span
+  *ngIf="order.fulfillmentStatus !== 'fulfilled'"
+  class="badge bg-dark"
+>
+  {{ order.fulfillmentStatus || 'unfulfilled' }}
+</span>
+</td>
+              <td>
+   <span
+        *ngIf="order.financialStatus === 'paid'"
+        class="badge bg-success"
+        style="color: white; margin-top: 1px"
+      >
+        {{ order.financialStatus }}
+      </span>
+      <span
+        *ngIf="order.financialStatus !== 'paid'"
+        class="badge bg-danger"
+        style="color: white; margin-top: 1px"
+      >
+        {{ order.financialStatus }}
+      </span>
+</td>
+              <td class="text-center">
+                <span class=" badge bg-danger text-light">{{order.status}}</span></td>
+              <!-- <td><Button class="btn btn-outline-danger btn-sm" ><i class="bi bi-trash-fill"></i></Button></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Active Orders -->
+  <div class="container mt-4 text-center">
+    <div class="card shadow-sm p-4">
+      <h5 class="mb-3">🔄 Want to return to active orders?</h5>
+      <p class="text-muted">Click below to go back to your live order list.</p>
+
+      <a [routerLink]="['/active-orders']" routerLinkActive="router-link-active"  class="btn btn-outline-success btn-sm mt-2">
+        View Active Orders
+      </a>
+    </div>
+  </div>
+</div>

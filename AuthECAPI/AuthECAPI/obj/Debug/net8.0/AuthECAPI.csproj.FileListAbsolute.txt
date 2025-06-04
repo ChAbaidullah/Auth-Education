@@ -868,3 +868,4 @@ D:\Code Files\Authorization-with-Role-Claim-and-Policy\AuthECAPI\AuthECAPI\obj\D
 D:\Code Files\Authorization-with-Role-Claim-and-Policy\AuthECAPI\AuthECAPI\obj\Debug\net8.0\AuthECAPI.pdb
 D:\Code Files\Authorization-with-Role-Claim-and-Policy\AuthECAPI\AuthECAPI\obj\Debug\net8.0\AuthECAPI.genruntimeconfig.cache
 D:\Code Files\Authorization-with-Role-Claim-and-Policy\AuthECAPI\AuthECAPI\obj\Debug\net8.0\ref\AuthECAPI.dll
+D:\Code Files\Authorization-with-Role-Claim-and-Policy\AuthECAPI\AuthECAPI\bin\Debug\net8.0\Newtonsoft.Json.dll

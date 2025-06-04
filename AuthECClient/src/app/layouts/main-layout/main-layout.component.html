@@ -9,7 +9,7 @@
       <a class="nav-link" routerLink="/admin-only">Admin Only</a>
     </li>
     <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOnly">
-      <a class="nav-link" routerLink="/manage-users">Manage Users</a>
+      <a class="nav-link" routerLink="/manage-teachers">Manage Teachers</a>
     </li>
     <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOnly">
       <a class="nav-link" routerLink="/admin-reports">View Reports</a>
@@ -19,6 +19,15 @@
     </li>
     <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOrTeacher">
       <a class="nav-link" routerLink="/admin-or-teacher">Admin Or Teacher</a>
+    </li>
+    <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOnly">
+      <a class="nav-link" routerLink="/shopify-orders">Shopify Orders</a>
+    </li>
+    <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOnly">
+      <a class="nav-link" routerLink="/active-orders">Active Orders</a>
+    </li>
+    <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOnly">
+      <a class="nav-link" routerLink="/inactive-orders">Inactive Orders</a>
     </li>
     <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.teacher">
       <a class="nav-link" routerLink="/courses">Manage Courses</a>
@@ -57,13 +66,13 @@
       <a class="nav-link" routerLink="/user-dashboard">User Dashboard</a>
     </li>
     <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.user">
-      <a class="nav-link" routerLink="/contact-us">Contact Us</a>
-    </li>
-    <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.user">
       <a class="nav-link" routerLink="/apply-for-admission">Apply for Admission</a>
     </li>
     <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.user">
       <a class="nav-link" routerLink="/apply-teacher">Apply Now as Teacher</a>
+    </li>
+      <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.user">
+      <a class="nav-link" routerLink="/contact-us">Contact Us</a>
     </li>
   </ul>
 </nav>

@@ -1,0 +1,226 @@
+<div class="container py-5">
+  <!-- Page Title -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold">🛒 Shopify Orders</h2>
+    <p class="text-muted">Check all shopify store orders on your shop.</p>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h5 class="mb-0">📦 Order List</h5>
+    </div>
+    <!-- Filter Orders -->
+     <div class="filter-container" style="margin-bottom: 20px;">
+  <div class="row">
+    <div class="col-md-4">
+      <label for="fromDate">From Date:</label>
+      <input
+        type="date"
+        id="fromDate"
+        [(ngModel)]="fromDate"
+        (change)="onDateRangeFilter()"
+        class="form-control">
+    </div>
+
+    <div class="col-md-4">
+      <label for="toDate">To Date:</label>
+      <input
+        type="date"
+        id="toDate"
+        [(ngModel)]="toDate"
+        (change)="onDateRangeFilter()"
+        class="form-control">
+    </div>
+
+   <div class="col-md-4 d-flex flex-column align-items-start pt-2">
+  <!-- Clear Filters Button (Full width) -->
+  <button (click)="clearFilters()" class="btn btn-secondary mb-2 w-100">
+    Clear All Filters
+  </button>
+
+  <!-- Fulfilled / Unfulfilled Buttons (radio style) -->
+  <div class="btn-group w-100" role="group" aria-label="Fulfillment Filters">
+    <button
+      type="button"
+      (click)="toggleFulfilled()"
+      [class.active]="showFulfilledOnly"
+      class="btn btn-outline-primary btn-sm"
+    >
+      <i class="bi bi-check2-circle"></i> Fulfilled
+    </button>
+
+    <button
+      type="button"
+      (click)="toggleUnfulfilled()"
+      [class.active]="showUnfulfilledOnly"
+      class="btn btn-outline-dark btn-sm"
+    >
+      <i class="bi bi-x-circle"></i> Unfulfilled
+    </button>
+  </div>
+</div>
+
+
+  </div>
+
+  <!--  Show filter results info -->
+  <div class="filter-info" style="margin-top: 10px;">
+    <small class="text-muted">
+      Showing {{ getFilteredCount() }} of {{ getTotalCount() }} orders
+      <span *ngIf="fromDate || toDate">
+        (filtered by date range)
+      </span>
+    </small>
+  </div>
+</div>
+<!-- Search Bar Of Orders -->
+<div class="row mb-3">
+  <div class="col-md-6 d-flex align-items-center">
+    <span class="me-2 fw-bold text-success d-flex align-items-center">
+      Search<i class="bi bi-search-heart me-1"></i>:
+    </span>
+    <input
+      type="text"
+      [(ngModel)]="searchOrderNumber"
+      (input)="onSearchOrderNumber()"
+      class="form-control ms-2 shadow-sm"
+      placeholder="Enter Order Number"
+    />
+  </div>
+</div>
+
+
+
+
+    <!-- Table of Orders -->
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped align-middle mb-0 text-center">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Order Number</th>
+              <th>Product Name</th>
+              <th>Product ID</th>
+              <th>Order Quantity</th>
+              <th>Created at</th>
+              <th>Total Price</th>
+              <th>Total Discount</th>
+              <th>Fulfillment Status</th>
+              <th>Financial Status</th>
+              <!-- <th>Order Actions</th> -->
+            </tr>
+          </thead>
+          <tbody>
+
+  <tr *ngFor="let order of paginatedOrders; index as i">
+    <td>{{ i + 1 }}</td>
+    <td>{{ order.order_number }}</td>
+
+    <!-- Multiple Product Names -->
+    <td>
+      <div *ngFor="let item of order.line_items">
+        {{ item.name }}
+      </div>
+    </td>
+
+    <!-- Multiple Product IDs -->
+    <td>
+      <div *ngFor="let item of order.line_items">
+        {{ item.product_id }}
+      </div>
+    </td>
+
+    <!-- Multiple Quantities -->
+    <td>
+      <div *ngFor="let item of order.line_items">
+        {{ item.quantity }}
+      </div>
+    </td>
+
+    <td>{{ order.created_at | date: 'short' }}</td>
+    <td>${{ order.total_price }}</td>
+
+    <!-- Multiple Discounts -->
+    <td>
+      <div *ngFor="let item of order.line_items">
+        {{ item.total_discount }}
+      </div>
+    </td>
+ <!-- Fulfillment Status Badge -->
+    <td class="text-center align-middle">
+  <span
+    *ngIf="order.line_items[0]?.fulfillment_status === 'fulfilled'"
+    class="badge bg-primary"
+  >
+    {{ order.line_items[0]?.fulfillment_status }}
+  </span>
+
+  <span
+  *ngIf="order.line_items[0]?.fulfillment_status !== 'fulfilled'"
+  class="badge bg-dark"
+>
+  {{ order.line_items[0]?.fulfillment_status || 'unfulfilled' }}
+</span>
+</td>
+
+    <!-- Financial Status Badge -->
+    <td>
+      <span
+        *ngIf="order.financial_status === 'paid'"
+        class="badge bg-success"
+        style="color: white; margin-top: 1px"
+      >
+        {{ order.financial_status }}
+      </span>
+      <span
+        *ngIf="order.financial_status !== 'paid'"
+        class="badge bg-danger"
+        style="color: white; margin-top: 1px"
+      >
+        {{ order.financial_status }}
+      </span>
+    </td>
+    <!-- <td class="text-center align-middle">
+       <button class="btn btn-outline-danger btn-sm" >
+  <i class="bi bi-apple"></i>
+</button>
+     </td> -->
+  </tr>
+</tbody>
+
+        </table>
+
+       <div *ngIf="orderList.length === 0 && (fromDate || toDate)" class="no-orders" style="text-align: center; background-color: green;">
+    <div class="alert alert-info">
+      No orders found for the selected date range.
+    </div>
+  </div>
+  <!-- Pagination -->
+   <div class="d-flex justify-content-center mt-3">
+   <p class="text-center mt-2">
+  Page {{ currentPage }} of {{ totalPages() }}
+</p>
+
+
+  <button class="btn btn-outline-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 1">
+    <i class="bi bi-arrow-left"></i> Prev
+  </button>
+
+  <button class="btn btn-outline-primary" (click)="nextPage()"
+          [disabled]="currentPage >= (orderList.length / itemsPerPage)">
+    Next <i class="bi bi-arrow-right"></i>
+  </button>
+</div>
+
+      </div>
+    </div>
+  </div>
+  <div class="container mt-4 text-center">
+  <div class="card shadow-sm p-4">
+    <h3><i class="bi bi-folder-plus"> Save all orders in database.</i></h3>
+    <button class="btn btn-outline-primary btn-sm" (click)="saveOrders()"><i class="bi bi-folder-fill"></i></button>
+  </div>
+</div>
+</div>

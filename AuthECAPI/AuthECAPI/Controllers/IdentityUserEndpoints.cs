@@ -43,7 +43,7 @@ namespace AuthECAPI.Controllers
     {
       AppUser user = new AppUser()
       {
-        UserName = userRegistrationModel.Email,
+        UserName = userRegistrationModel.Email.Split('@')[0],
         Email = userRegistrationModel.Email,
         FullName = userRegistrationModel.FullName,
         Gender = userRegistrationModel.Gender,
